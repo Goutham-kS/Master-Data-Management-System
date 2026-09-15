@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+flask_session/
+.env
+uploads/
+*.xlsx

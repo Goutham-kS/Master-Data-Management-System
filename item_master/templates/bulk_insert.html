@@ -1,0 +1,344 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Update Items</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden; /* Ensure sticky elements work properly */
+    }
+    /* Static header that stays visible */
+    .card-header {
+      position: sticky;
+      top: 0;
+      background-color: white;
+      z-index: 10;
+      padding: 15px;
+      border-bottom: 2px solid #ddd;
+      text-align: center;
+    }
+    /* Static footer that stays visible */
+    .card-footer {
+      position: sticky;
+      bottom: 0;
+      background-color: white;
+      z-index: 10;
+      padding: 15px;
+      border-top: 2px solid #ddd;
+      text-align: center;
+    }
+    /* Only the card body scrolls */
+    .card-body {
+      max-height: 400px; /* Adjust height as needed */
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .alert-note {
+      font-size: 14px;
+      margin: 15px 0;
+    }
+    .btn-secondary {
+      border-radius: 8px;
+      background-color: #6c757d;
+      color: white;
+      padding: 10px 20px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+    }
+    .btn-secondary:hover {
+      background-color: #495057;
+    }
+  </style>
+</head>
+<body class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card">
+       
+        <div class="card-header">
+          <h2 class="text-primary mb-0">Bulk Update Items</h2>
+        </div>
+        
+  
+        <div id="message" class="p-3">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              <div class="alert alert-dismissible fade show" role="alert">
+                <ul class="list-unstyled">
+                  {% for category, message in messages %}
+                    <li class="alert-{{ category }}">{{ message }}</li>
+                  {% endfor %}
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endif %}
+          {% endwith %}
+        </div>
+        
+ 
+        <div class="alert alert-info alert-note mx-3" role="alert">
+          <strong>Note:</strong> Please upload an Excel file in <code>.xls</code> or <code>.xlsx</code> format only.
+          Ensure the file follows the required column format:<br>
+          <code>FY  
+            RC_effective_date_from  End_date  Type  MFG  ITEM_CODE  ARC_No  DESCRIPTION  BUOM   PUOM  PACKING  BRAND  PRODUCT_CODE 
+             HSN_NO  MRP_(FY-22-23)   PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY-22-23) MRP_(FY-23-25) PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY-23-25) Category 
+            MHB1  MMB1   MWP1  MNB1  KMC1 MDP1  MGA1  MJP1  MSA1  MVJ1  MHSR  MHVR  MHPK  MHPB  MHYP  MHHB  MHDB  MHMY  MHGG  MHP1  MHGH  MHSL   MDHK  MSLA   MBBS  
+             MMKA  MHKM  MEST   MPPP  MHNB   MHSB  MHMR   MHRA MHRN   MHSG  MHRP   MHEC  CM_TEAM_HEAD</code>
+        </div>
+        
+        
+        <div class="text-center mb-4">
+          <a href="{{ url_for('app_routes.download_template') }}" class="btn btn-success">
+             Download Excel Template
+          </a>
+        </div>
+        
+  
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data" class="border p-4 rounded bg-light">
+            <div class="mb-3">
+              <label for="file" class="form-label">Upload Excel File</label>
+              <input type="file" class="form-control" name="file" id="file" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update</button>
+          </form>
+        </div>
+        
+       
+        <div class="fixed-bottom-container">
+          <a href="{{ url_for('app_routes.index') }}" class="btn btn-secondary">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bulk Update Items</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .card-header {
+      position: sticky;
+      top: 0;
+      background-color: white;
+      z-index: 10;
+      padding: 15px;
+      border-bottom: none; /* keep no line under header text */
+    }
+    .card-footer {
+      position: sticky;
+      bottom: 0;
+      background-color: white;
+      z-index: 10;
+      padding: 15px;
+      border-top: 2px solid #ddd;
+      text-align: center;
+    }
+    .card-body {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .alert-note {
+      font-size: 14px;
+      margin: 15px 0;
+    }
+    .btn-secondary {
+      border-radius: 8px;
+      background-color: #6c757d;
+      color: white;
+      padding: 10px 20px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+    }
+    .btn-secondary:hover {
+      background-color: #495057;
+    }
+    /* REMOVED this to restore default underline */
+    /* .nav-tabs {
+      border-bottom: none;
+    } */
+  </style>
+</head>
+<body class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card">
+
+        <div class="card-header">
+          <h2 class="text-primary mb-3 text-center">Bulk Update Items</h2>
+ 
+          <ul class="nav nav-tabs mt-2" id="bulkUploadTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="gc-tab" data-bs-toggle="tab" data-bs-target="#gc" type="button" role="tab" aria-controls="gc" aria-selected="true">GC</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pharma-tab" data-bs-toggle="tab" data-bs-target="#pharma" type="button" role="tab" aria-controls="pharma" aria-selected="false">Pharma</button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tab-content px-3 pb-3">
+          <div class="tab-pane fade show active" id="gc" role="tabpanel" aria-labelledby="gc-tab">
+        
+            <div id="message" class="p-3">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  <div class="alert alert-dismissible fade show" role="alert">
+                    <ul class="list-unstyled">
+                      {% for category, message in messages %}
+                        <li class="alert-{{ category }}">{{ message }}</li>
+                      {% endfor %}
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endif %}
+              {% endwith %}
+            </div>
+            
+     
+            <div class="alert alert-info alert-note mx-3" role="alert">
+              <strong>Note:</strong> Please upload an Excel file in <code>.xls</code> or <code>.xlsx</code> format only.
+              Ensure the file follows the required column format:<br>
+              <code>
+                FINANCIAL_YEAR RC_effective_date_from  End_date  Type  MFG  ITEM_CODE  ARC_No  DESCRIPTION  BUOM   PUOM  PACKING  BRAND  PRODUCT_CODE 
+                 HSN_NO  MRP_(FY-22-23)   PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY-22-23) MRP_(FY-23-25) PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY-23-25) Category 
+                MHB1  MMB1   MWP1  MNB1  KMC1 MDP1  MGA1  MJP1  MSA1  MVJ1  MHSR  MHVR  MHPK  MHPB  MHYP  MHHB  MHDB  MHMY  MHGG  MHP1  MHGH  MHSL   MDHK  MSLA   MBBS  
+                 MMKA  MHKM  MEST   MPPP  MHNB   MHSB  MHMR   MHRA MHRN   MHSG  MHRP   MHEC  CM_TEAM_HEAD</code>
+            </div>
+            
+            
+            <div class="text-center mb-4">
+              
+              <a href="{{ url_for('app_routes.download_template') }}" class="btn btn-success">
+                Download GC Template
+              </a>
+              
+  
+            </div>
+            
+      
+            <div class="card-body">
+              <form method="POST" enctype="multipart/form-data" action="{{ url_for('app_routes.bulk_insert') }}">
+                 <div class="mb-3">
+                  <label for="file" class="form-label">Upload Excel File</label>
+                  <input type="file" class="form-control" name="file" id="file" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Update</button>
+
+
+
+              </form>
+              <!-- <form method="POST" enctype="multipart/form-data" class="border p-4 rounded bg-light"> -->
+               
+            
+            </div>
+            
+           
+            <div class="fixed-bottom-container">
+              <a href="{{ url_for('app_routes.index') }}" class="btn btn-secondary">Back to Home</a>
+            </div>
+
+          </div>
+
+          <div class="tab-pane fade" id="pharma" role="tabpanel" aria-labelledby="pharma-tab">
+            
+            <div id="message" class="p-3">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  <div class="alert alert-dismissible fade show" role="alert">
+                    <ul class="list-unstyled">
+                      {% for category, message in messages %}
+                        <li class="alert-{{ category }}">{{ message }}</li>
+                      {% endfor %}
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endif %}
+              {% endwith %}
+            </div>
+            
+     
+            <div class="alert alert-info alert-note mx-3" role="alert">
+              <strong>Note:</strong> Please upload an Excel file in <code>.xls</code> or <code>.xlsx</code> format only.
+              Ensure the file follows the required column format:<br>
+              <code>FINANCIAL_YEAR RC_EFFECTIVE_DATE_FROM END_DATE TYPE FORMULATION MFG ARC_No ITEM_CODE DESCRIPTION PACK_SIZE PUOM DENOMINATOR NUMERATOR BUOM GST_PERCENT 
+                PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY) PURCHASE_PACK_PRICE_WITHOUT_TAX_FOR_(FY) PURCHASE_MRP_PER_UNIT_WITHOUT_TAX_FOR_(FY) PURCHASE_PACK_MRP_WITHOUT_TAX_FOR_(FY) OFFERS CATEGORY HSN_NO 
+                 MHB1 MMB1 MWP1 MNB1 KMC1 MDP1 MGA1 MJP1 MSA1 MVJ1 MHSR MHVR MHPK MHPB MHYP MHHB MHDB MHMY MHGG MHP1 MHGH MHSL MDHK MSLA MBBS MMKA MHKM MEST MPPP MHNB 
+                 MHSB MHMR MHRA MHRN MHSG MHRP MHEC CM_TEAM_HEAD</code>
+            </div>
+
+            <div class="text-center mb-4">
+                <a href="{{ url_for('pharma.download_pharma_template') }}" class="btn btn-success">Download Pharma Template</a>
+
+            </div>
+            
+            
+           
+            
+      
+            <div class="card-body">
+              <form method="POST" enctype="multipart/form-data" action="{{ url_for('pharma.bulk_insert_pharma') }}" class="border p-4 rounded bg-light">
+
+
+                <div class="mb-3">
+                  <label for="file" class="form-label">Upload Excel File</label>
+                  <input type="file" class="form-control" name="file" id="file" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Update</button>
+              </form>
+              <!-- <form method="POST" enctype="multipart/form-data" > -->
+                
+ 
+            </div>
+            
+           
+            <div class="fixed-bottom-container">
+              <a href="{{ url_for('app_routes.index') }}" class="btn btn-secondary">Back to Home</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="fixed-bottom-container">
+          <a href="{{ url_for('app_routes.index') }}" class="btn btn-secondary">Back to Home</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+ 

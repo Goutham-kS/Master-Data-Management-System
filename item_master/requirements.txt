@@ -1,0 +1,6 @@
+Flask
+flask-session
+pymysql
+pandas
+openpyxl
+XlsxWriter

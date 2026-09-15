@@ -1,0 +1,494 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
+        }
+        .table-container {
+            max-height: 70vh;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+        .table {
+            min-width: max-content;
+            table-layout: auto;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            min-width: 100px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .table th {
+            background-color: #007bff;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .download-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+            background-color: #fff;
+        }
+        .download-icon {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+        .resizer {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            cursor: col-resize;
+            background: transparent;
+        }
+        .resizer:hover {
+            background: #666;
+        }
+        td[contenteditable="true"] {
+            cursor: text;
+            outline: none;
+        }
+        td.edited {
+            background-color: #fff3cd;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <h2 class="text-center text-primary mt-2">Search Results</h2>
+
+    <div class="download-container">
+        <form id="downloadForm" action="{{ url_for('app_routes.export_results') }}" method="post"></form>
+        <button type="submit" form="downloadForm" class="btn btn-outline-primary me-2" title="Download Excel">
+            <img src="{{ url_for('static', filename='image/download-icon.jpg') }}" alt="Download Excel" class="download-icon">
+        </button>
+    </div>
+
+    <div class="table-container">
+        {% if results %}
+        <table class="table table-bordered table-striped" role="table">
+            <thead>
+                <tr role="row">
+                    <th>Item Code <div class="resizer"></div></th>
+                    <th>HSN No <div class="resizer"></div></th>
+                    <th>Description <div class="resizer"></div></th>
+                    <th>Brand <div class="resizer"></div></th>
+                    <th>Product Code <div class="resizer"></div></th>
+                    <th>Category <div class="resizer"></div></th>
+                    <th>Manufacturer <div class="resizer"></div></th>
+                    <th>MRP <div class="resizer"></div></th>
+                    <th>Purchase Price <div class="resizer"></div></th>
+                    <th>BUOM <div class="resizer"></div></th>
+                    <th>Packing <div class="resizer"></div></th>
+                    <th>PUOM <div class="resizer"></div></th>
+                    {% for unit in results[0] if unit not in ['ITEM_CODE', 'HSN_NO', 'DESCRIPTION', 'BRAND', 'PRODUCT_CODE', 'CATEGORY', 'MFG', 'MRP_(FY_CURRENT_YEAR)', 'PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_CURRENT_YEAR)', 'BUOM', 'PACKING', 'PUOM'] %}
+                        <th>{{ unit }} <div class="resizer"></div></th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in results %}
+                <tr role="row">
+                    <td contenteditable="true" role="cell">{{ row['ITEM_CODE'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['HSN_NO'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['DESCRIPTION'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['BRAND'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['PRODUCT_CODE'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['CATEGORY'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['MFG'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['MRP_(FY_CURRENT_YEAR)'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_CURRENT_YEAR)'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['BUOM'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['PACKING'] }}</td>
+                    <td contenteditable="true" role="cell">{{ row['PUOM'] }}</td>
+                    {% for unit in row if unit not in ['ITEM_CODE', 'HSN_NO', 'DESCRIPTION', 'BRAND', 'PRODUCT_CODE', 'CATEGORY', 'MFG', 'MRP_(FY_CURRENT_YEAR)', 'PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_CURRENT_YEAR)', 'BUOM', 'PACKING', 'PUOM'] %}
+                        <td role="cell">{{ row[unit] if row[unit] is not none else '-' }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-center mt-3">No matching records found.</p>
+        {% endif %}
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Column resizer logic
+        document.querySelectorAll(".resizer").forEach(resizer => {
+            let startX, startWidth, column;
+
+            resizer.addEventListener("mousedown", function (event) {
+                column = event.target.parentElement;
+                startX = event.clientX;
+                startWidth = column.offsetWidth;
+
+                document.addEventListener("mousemove", resizeColumn);
+                document.addEventListener("mouseup", stopResize);
+            });
+
+            function resizeColumn(event) {
+                const newWidth = startWidth + (event.clientX - startX);
+                column.style.width = `${newWidth}px`;
+            }
+
+            function stopResize() {
+                document.removeEventListener("mousemove", resizeColumn);
+                document.removeEventListener("mouseup", stopResize);
+            }
+        });
+
+        // Highlight and auto-resize edited cells
+        document.querySelectorAll("td[contenteditable=true]").forEach(cell => {
+            cell.addEventListener("input", function () {
+                this.classList.add("edited");
+                this.style.height = "auto";
+                this.style.height = this.scrollHeight + "px";
+            });
+        });
+    });
+</script>
+</body>
+</html>
+  -->
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Results</title>
+  
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: 'Arial', sans-serif;
+    }
+    .table-container {
+      max-height: 70vh;
+      overflow-y: auto;
+      overflow-x: auto;
+    }
+    .table {
+      min-width: max-content;
+      table-layout: auto;
+      border-collapse: collapse;
+    }
+    .table th, .table td {
+      min-width: 100px;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    .table th {
+      background-color: #007bff;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .download-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px;
+      background-color: #fff;
+    }
+    .download-icon {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    .resizer {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      cursor: col-resize;
+      background: transparent;
+    }
+    .resizer:hover {
+      background: #666;
+    }
+    td[contenteditable="true"] {
+      cursor: text;
+      outline: none;
+    }
+    td.edited {
+      background-color: #fff3cd;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <h2 class="text-center text-primary mt-2">Search Results</h2>
+ 
+  <div class="download-container">
+    <form id="downloadForm" action="{{ url_for('app_routes.export_results') }}" method="post">
+      <button type="submit" class="btn btn-outline-primary me-2" title="Download Excel">
+        <img src="{{ url_for('static', filename='image/download-icon.jpg') }}" alt="Download Excel" class="download-icon">
+      </button>
+    </form>
+  </div>
+
+ 
+  <div class="table-container">
+    {% if results %}
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            {% for col in results[0].keys() %}
+              <th>{{ col }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in results %}
+            <tr>
+              {% for value in row.values() %}
+                <td>{{ value if value is not none else '-' }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="text-center text-danger mt-4">No matching records found.</p>
+    {% endif %}
+  </div>
+</div>
+<div>
+
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+ 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+     
+    document.querySelectorAll(".resizer").forEach(resizer => {
+      let startX, startWidth, column;
+
+      resizer.addEventListener("mousedown", function (event) {
+        column = event.target.parentElement;
+        startX = event.clientX;
+        startWidth = column.offsetWidth;
+
+        document.addEventListener("mousemove", resizeColumn);
+        document.addEventListener("mouseup", stopResize);
+      });
+
+      function resizeColumn(event) {
+        const newWidth = startWidth + (event.clientX - startX);
+        column.style.width = `${newWidth}px`;
+      }
+
+      function stopResize() {
+        document.removeEventListener("mousemove", resizeColumn);
+        document.removeEventListener("mouseup", stopResize);
+      }
+    });
+
+     
+    document.querySelectorAll("td[contenteditable=true]").forEach(cell => {
+      cell.addEventListener("input", function () {
+        this.classList.add("edited");
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + "px";
+      });
+    });
+  });
+</script>
+
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Results</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: 'Arial', sans-serif;
+    }
+    .table-container {
+      max-height: 70vh;
+      overflow-y: auto;
+      overflow-x: auto;
+    }
+    .table {
+      min-width: max-content;
+      table-layout: auto;
+      border-collapse: collapse;
+    }
+    .table th, .table td {
+      min-width: 100px;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+      position: relative;
+    }
+    .table th {
+      background-color: #007bff;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .download-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px;
+      background-color: #fff;
+    }
+    .download-icon {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    .resizer {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      cursor: col-resize;
+      background: transparent;
+    }
+    .resizer:hover {
+      background: #666;
+    }
+    td[contenteditable="true"] {
+      cursor: text;
+      outline: none;
+    }
+    td.edited {
+      background-color: #fff3cd;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <h2 class="text-center text-primary mt-2">Search Results</h2>
+
+  <!-- Download button -->
+  <div class="download-container">
+    <form id="downloadForm" action="{{ url_for('app_routes.export_results') }}" method="post">
+      <button type="submit" class="btn btn-outline-primary me-2" title="Download Excel">
+        <img src="{{ url_for('static', filename='image/download-icon.jpg') }}" alt="Download Excel" class="download-icon">
+      </button>
+    </form>
+  </div>
+
+  <!-- Search result table -->
+  <div class="table-container">
+    {% if results %}
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            {% for col in results[0].keys() %}
+              <th>
+                {{ col }}
+                <div class="resizer"></div>
+              </th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in results %}
+            <tr>
+              {% for value in row.values() %}
+                <td contenteditable="true">{{ value if value is not none else '-' }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="text-center text-danger mt-4">No matching records found.</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Make columns resizable
+    const resizers = document.querySelectorAll(".resizer");
+
+    resizers.forEach(resizer => {
+      let startX, startWidth, col;
+
+      resizer.addEventListener("mousedown", function (e) {
+        e.preventDefault();
+        col = e.target.parentElement;
+        startX = e.clientX;
+        startWidth = col.offsetWidth;
+
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+      });
+
+      function onMouseMove(e) {
+        const newWidth = startWidth + (e.clientX - startX);
+        if (newWidth > 50) {
+          col.style.width = newWidth + "px";
+        }
+      }
+
+      function onMouseUp() {
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+      }
+    });
+
+    // Highlight edited cells
+    document.querySelectorAll("td[contenteditable=true]").forEach(cell => {
+      cell.addEventListener("input", function () {
+        this.classList.add("edited");
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + "px";
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
+

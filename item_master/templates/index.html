@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            padding: 12px 20px;
+            display: block;
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+            text-decoration: none;
+        }
+
+        .sidebar .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 270px;
+            padding: 40px;
+        }
+
+        .card {
+            transition: 0.3s;
+            height: 180px
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-boxes"></i> Item Master
+        </div>
+        <a href="/view_all" target="_blank"><i class="fas fa-list"></i> View All Items</a>
+        <a href="/search" target="_blank"><i class="fas fa-search"></i> Search Items</a>
+        <a href="/insert" target="_blank"><i class="fas fa-plus-circle"></i> Insert New Item</a>
+        <a href="/bulk_insert" target="_blank"><i class="fas fa-upload"></i> Bulk Insert</a>
+        <a href="/update" target="_blank"><i class="fas fa-edit"></i> Update Items</a>
+        <a href="/delete" target="_blank"><i class="fas fa-trash-alt"></i> Delete Items</a>
+        <a href="/search_info" target="_blank"><i class="fas fa-trash-alt"></i> Search As Per Info</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2 class="text-center mb-4">Welcome to the Item Management System</h2>
+        <p class="text-center">Efficiently manage your inventory with our simple and intuitive interface.</p>
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-search fa-3x text-primary"></i>
+                        <h5 class="card-title mt-3">Search Items</h5>
+                        <p class="card-text">Find specific items using item codes.</p>
+                        <a href="/search" class="btn btn-primary"target="_blank">Go to Search</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-plus-circle fa-3x text-success"></i>
+                        <h5 class="card-title mt-3">Insert New Item</h5>
+                        <p class="card-text">Add a new item to the database.</p>
+                        <a href="/insert" class="btn btn-success" target="_blank">Insert Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-upload fa-3x text-warning"></i>
+                        <h5 class="card-title mt-3">Bulk Insert</h5>
+                        <p class="card-text">Upload multiple items via an Excel file.</p>
+                        <a href="/bulk_insert" class="btn btn-warning text-white" target="_blank">Upload File</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-edit fa-3x text-info"></i>
+                        <h5 class="card-title mt-3">Update Items</h5>
+                        <p class="card-text">Modify MRP and purchase price of items.</p>
+                        <a href="/update" class="btn btn-info text-white" target="_blank">Update Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-trash-alt fa-3x text-danger"></i>
+                        <h5 class="card-title mt-3">Delete Items</h5>
+                        <p class="card-text">Remove items from inventory.</p>
+                        <a href="/delete" class="btn btn-danger" target="_blank">Delete Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

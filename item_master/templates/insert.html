@@ -1,0 +1,1768 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert ITEM DATA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: relative;
+        }
+        .card-header {
+            background-color:white ;
+            color:#007bff;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .card-body {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .card-footer {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            font-weight: bold;
+            width: 120px;
+            height: 40px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">Insert ITEM DATA</div>
+        <div class="card-body">
+            <form id="insertForm" method="POST" action="/insert">
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                <label for="FINANCIAL_YEAR" class="form-label">Financial Year:</label>
+                <input type="text" class="form-control" name="FINANCIAL_YEAR" placeholder="Enter FINANCIAL YEAR" required>
+            </div>
+            <div class="mb-3">
+                <label for="RC_EFFECTIVE_DATE_FROM" class="form-label">RC Effective Date From:</label>
+                <input type="date" class="form-control" name="RC_EFFECTIVE_DATE_FROM" required>
+            </div>
+            <div class="mb-3">
+                <label for="END_DATE" class="form-label">End Date:</label>
+                <input type="date" class="form-control" name="END_DATE" required>
+            </div>
+            <div class="mb-3">
+                <label for="TYPE" class="form-label">Type:</label>
+                <input type="text" class="form-control" name="TYPE" placeholder="Enter Type" required>
+            </div>
+            <div class="mb-3">
+                <label for="MFG" class="form-label">Manufacturer:</label>
+                <input type="text" class="form-control" name="MFG" placeholder="Enter Manufacturer" required>
+            </div>
+            <div class="mb-3">
+                <label for="ITEM_CODE" class="form-label">Item Code:</label>
+                <input type="text" class="form-control" name="ITEM_CODE" placeholder="Enter Item Code" required>
+            </div>
+            <div class="mb-3">
+                <label for="ARC_No" class="form-label">ARC No:</label>
+                <input type="text" class="form-control" name="ARC_No" placeholder="Enter ARC No" required>
+            </div>
+            <div class="mb-3">
+                <label for="DESCRIPTION" class="form-label">Description:</label>
+                <input type="text" class="form-control" name="DESCRIPTION" placeholder="Enter Description" required>
+            </div>
+            <div class="mb-3">
+                <label for="BUOM" class="form-label">Base Unit of Measure:</label>
+                <input type="text" class="form-control" name="BUOM" placeholder="Enter Base Unit of Measure">
+            </div>
+            <div class="mb-3">
+                <label for="PUOM" class="form-label">Purchase Unit of Measure:</label>
+                <input type="text" class="form-control" name="PUOM" placeholder="Enter Purchase Unit of Measure">
+            </div>
+            <div class="mb-3">
+                <label for="PACKING" class="form-label">Packing:</label>
+                <input type="number" class="form-control" name="PACKING" placeholder="Enter Packing">
+            </div>
+            <div class="mb-3">
+                <label for="BRAND" class="form-label">Brand:</label>
+                <input type="text" class="form-control" name="BRAND" placeholder="Enter Brand">
+            </div>
+            <div class="mb-3">
+                <label for="PRODUCT_CODE" class="form-label">Product Code:</label>
+                <input type="text" class="form-control" name="PRODUCT_CODE" placeholder="Enter Product Code">
+            </div>
+            <div class="mb-3">
+                <label for="HSN_NO" class="form-label">HSN No:</label>
+                <input type="number" class="form-control" name="HSN_NO" placeholder="Enter HSN No">
+            </div>
+            <div class="mb-3">
+                <label for="MRP_(FY_PREVIOUS_YEAR)" class="form-label">MRP (FY PREVIOUS YEAR):</label>
+                <input type="number" step="0.01" class="form-control" name="MRP_(FY_PREVIOUS_YEAR)" placeholder="Enter MRP MRP_(FY_PREVIOUS_YEAR)">
+            </div>
+            <div class="mb-3">
+                <label for="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_PREVIOUS_YEAR)" class="form-label">Purchase Price (FY_PREVIOUS_YEAR):</label>
+                <input type="number" step="0.01" class="form-control" name="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_PREVIOUS_YEAR)" placeholder="Enter Purchase Price (FY-22-23)">
+            </div>
+            <div class="mb-3">
+                <label for="MRP_(FY_CURRENT_YEAR)" class="form-label">MRP (FY_CURRENT_YEAR):</label>
+                <input type="number" step="0.01" class="form-control" name="MRP_(FY_CURRENT_YEAR)" placeholder="Enter MRP (FY-23-25)">
+            </div>
+            <div class="mb-3">
+                <label for="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_CURRENT_YEAR)" class="form-label">Purchase Price (FY_CURRENT_YEAR):</label>
+                <input type="number" step="0.01" class="form-control" name="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_CURRENT_YEAR)" placeholder="Enter Purchase Price (FY-23-25)">
+            </div>
+            <div class="mb-3">
+                <label for="CATEGORY" class="form-label">Category:</label>
+                <input type="text" class="form-control" name="CATEGORY" placeholder="Enter Category">
+            </div>
+            <div class="mb-3">
+                <label for="MHB1" class="form-label">MHB1:</label>
+                <input type="number" class="form-control" name="MHB1" placeholder="Enter MHB1">
+            </div>
+            <div class="mb-3">
+                <label for="MMB1" class="form-label">MMB1:</label>
+                <input type="number" class="form-control" name="MMB1" placeholder="Enter MHB1">
+            </div>
+            <div class="mb-3">
+                <label for="MWP1" class="form-label">MWP1:</label>
+                <input type="number" class="form-control" name="MWP1" placeholder="Enter MWP1">
+            </div>
+            <div class="mb-3">
+                <label for="MNB1" class="form-label">MNB1:</label>
+                <input type="number" class="form-control" name="MNB1" placeholder="Enter MNB1">
+            </div>
+            <div class="mb-3">
+                <label for="KMC1" class="form-label">KMC1:</label>
+                <input type="number" class="form-control" name="KMC1" placeholder="Enter KMC1">
+            </div>
+            <div class="mb-3">
+                <label for="MDP1" class="form-label">MDP1:</label>
+                <input type="number" class="form-control" name="MDP1" placeholder="Enter MDP1">
+            </div>
+            <div class="mb-3">
+                <label for="MGA1" class="form-label">MGA1:</label>
+                <input type="number" class="form-control" name="MGA1" placeholder="Enter MGA1">
+            </div>
+            <div class="mb-3">
+                <label for="MJP1" class="form-label">MJP1:</label>
+                <input type="number" class="form-control" name="MJP1" placeholder="Enter MJP1">
+            </div>
+            <div class="mb-3">
+                <label for="MSA1" class="form-label">MSA1:</label>
+                <input type="number" class="form-control" name="MSA1" placeholder="Enter MSA1">
+            </div>
+            <div class="mb-3">
+                <label for="MVJ1" class="form-label">MVJ1:</label>
+                <input type="number" class="form-control" name="MVJ1" placeholder="Enter MVJ1">
+            </div>
+            <div class="mb-3">
+                <label for="MHSR" class="form-label">MHSR:</label>
+                <input type="number" class="form-control" name="MHSR" placeholder="Enter MHSR">
+            </div>
+            <div class="mb-3">
+                <label for="MHVR" class="form-label">MHVR:</label>
+                <input type="number" class="form-control" name="MHVR" placeholder="Enter MHVR">
+            </div>
+            <div class="mb-3">
+                <label for="MHPK" class="form-label">MHPK:</label>
+                <input type="number" class="form-control" name="MHPK" placeholder="Enter MHPK">
+            </div>
+            <div class="mb-3">
+                <label for="MHPB" class="form-label">MHPB:</label>
+                <input type="number" class="form-control" name="MHPB" placeholder="Enter MHPB">
+            </div>
+            <div class="mb-3">
+                <label for="MHYP" class="form-label">MHYP:</label>
+                <input type="number" class="form-control" name="MHYP" placeholder="Enter MHYP">
+            </div>
+            <div class="mb-3">
+                <label for="MHHB" class="form-label">MHHB:</label>
+                <input type="number" class="form-control" name="MHHB" placeholder="Enter MHHB">
+            </div>
+            <div class="mb-3">
+                <label for="MHDB" class="form-label">MHDB:</label>
+                <input type="number" class="form-control" name="MHDB" placeholder="Enter MHDB">
+            </div>
+            <div class="mb-3">
+                <label for="MHMY" class="form-label">MHMY:</label>
+                <input type="number" class="form-control" name="MHMY" placeholder="Enter MHMY">
+            </div>
+            <div class="mb-3">
+                <label for="MHGG" class="form-label">MHGG:</label>
+                <input type="number" class="form-control" name="MHGG" placeholder="Enter MHGG">
+            </div>
+            <div class="mb-3">
+                <label for="MHP1" class="form-label">MHP1:</label>
+                <input type="number" class="form-control" name="MHP1" placeholder="Enter MHP1">
+            </div>
+            <div class="mb-3">
+                <label for="MHGH" class="form-label">MHGH:</label>
+                <input type="number" class="form-control" name="MHGH" placeholder="Enter MHGH">
+            </div>
+            <div class="mb-3">
+                <label for="MHSL" class="form-label">MHSL:</label>
+                <input type="number" class="form-control" name="MHSL" placeholder="Enter MHSL">
+            </div>
+            <div class="mb-3">
+                <label for="MDHK" class="form-label">MDHK:</label>
+                <input type="number" class="form-control" name="MDHK" placeholder="Enter MDHK">
+            </div>
+            <div class="mb-3">
+                <label for="MSLA" class="form-label">MSLA:</label>
+                <input type="number" class="form-control" name="MSLA" placeholder="Enter MSLA">
+            </div>
+            <div class="mb-3">
+                <label for="MBBS" class="form-label">MBBS:</label>
+                <input type="number" class="form-control" name="MBBS" placeholder="Enter MBBS">
+            </div>
+            <div class="mb-3">
+                <label for="MMKA" class="form-label">MMKA:</label>
+                <input type="number" class="form-control" name="MMKA" placeholder="Enter MMKA">
+            </div>
+            <div class="mb-3">
+                <label for="MHKM" class="form-label">MHKM:</label>
+                <input type="number" class="form-control" name="MHKM" placeholder="Enter MHKM">
+            </div>
+            <div class="mb-3">
+                <label for="MEST" class="form-label">MEST:</label>
+                <input type="number" class="form-control" name="MEST" placeholder="Enter MEST">
+            </div>
+            <div class="mb-3">
+                <label for="MPPP" class="form-label">MPPP:</label>
+                <input type="number" class="form-control" name="MPPP" placeholder="Enter MPPP">
+            </div>
+            <div class="mb-3">
+                <label for="MHNB" class="form-label">MHNB:</label>
+                <input type="number" class="form-control" name="MHNB" placeholder="Enter MHNB">
+            </div>
+            <div class="mb-3">
+                <label for="MHSB" class="form-label">MHSB:</label>
+                <input type="number" class="form-control" name="MHSB" placeholder="Enter MHSB">
+            </div> 
+            <div class="mb-3">
+                <label for="MHMR" class="form-label">MHMR:</label>
+                <input type="text" class="form-control" name="MHMR" placeholder="Enter MHMR">
+            </div>
+            <div class="mb-3">
+                <label for="MHRA" class="form-label">MHRA:</label>
+                <input type="number" class="form-control" name="MHRA" placeholder="Enter MHRA">
+            </div>
+            <div class="mb-3">
+                <label for="MHRN" class="form-label">MHRN:</label>
+                <input type="number" class="form-control" name="MHRN" placeholder="Enter MHRN">
+            </div>
+            <div class="mb-3">
+                <label for="MHSG" class="form-label">MHSG:</label>
+                <input type="number" class="form-control" name="MHSG" placeholder="Enter MHSG">
+            </div>
+            <div class="mb-3">
+                <label for="MHRP" class="form-label">MHRP:</label>
+                <input type="number" class="form-control" name="MHRP" placeholder="Enter MHRP">
+            </div>
+            <div class="mb-3">
+                <label for="MHEC" class="form-label">MHEC:</label>
+                <input type="number" class="form-control" name="MHEC" placeholder="Enter MHEC">
+            </div>
+            <div class="mb-3">
+                <label for="CM_TEAM_HEAD" class="form-label">CM Team Head:</label>
+                <input type="text" class="form-control" name="CM_TEAM_HEAD" placeholder="Enter CM Team Head">
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" form="insertForm" class="btn btn-primary">Insert</button>
+            <a href="/" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#insertForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            $.ajax({
+                url: '/insert',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    alert('Item inserted successfully!');
+                    $('#insertForm')[0].reset();
+                },
+                error: function() {
+                    alert('Error inserting item. Please try again.');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Insert ITEM DATA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Poppins', sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .card {
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    .card-header {
+      background-color: white;
+      color: #007bff;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 15px;
+      border-bottom: none;
+    }
+    .card-footer {
+      background-color: white;
+      padding: 15px;
+      text-align: center;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .btn-primary {
+      width: 120px;
+      height: 40px;
+    }
+    .pharma-input {
+  width: 500px;      /* fixed width */
+  height: 40px;      /* fixed height */
+  padding: 8px 12px; /* adjust padding to fit height */
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: #004d40;
+  background-color: #e0f2f1;
+  border: 2px solid #00897b;
+  border-radius: 8px;
+  box-sizing: border-box; /* include padding and border in width/height */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pharma-input:focus {
+  outline: none;
+  border-color: #004d40;
+  box-shadow: 0 0 8px rgba(0, 77, 64, 0.6);
+  background-color: #ffffff;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">Insert ITEM DATA</div>
+    <div class="card-body">
+
+ 
+      <ul class="nav nav-tabs" id="itemTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="gc-tab" data-bs-toggle="tab" data-bs-target="#gc" type="button" role="tab" aria-controls="gc" aria-selected="true">
+            GC
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pharma-tab" data-bs-toggle="tab" data-bs-target="#pharma" type="button" role="tab" aria-controls="pharma" aria-selected="false">
+            Pharma
+          </button>
+        </li>
+      </ul>
+
+       
+      <div class="tab-content mt-3">
+      
+        <div class="tab-pane fade show active" id="gc" role="tabpanel" aria-labelledby="gc-tab">
+      
+          <div class="mb-3">
+                <label for="FINANCIAL_YEAR" class="form-label">Financial Year:</label>
+                <input type="text" class="form-control" name="FINANCIAL_YEAR" placeholder="Enter FINANCIAL YEAR" required>
+            </div>
+                <div class="mb-3">
+                    <label for="RC_EFFECTIVE_DATE_FROM" class="form-label">RC Effective Date From:</label>
+                    <input type="date" class="form-control" name="RC_EFFECTIVE_DATE_FROM" required>
+                </div>
+                <div class="mb-3">
+                    <label for="END_DATE" class="form-label">End Date:</label>
+                    <input type="date" class="form-control" name="END_DATE" required>
+                </div>
+                <div class="mb-3">
+                    <label for="TYPE" class="form-label">Type:</label>
+                    <input type="text" class="form-control" name="TYPE" placeholder="Enter Type" required>
+                </div>
+                <div class="mb-3">
+                    <label for="MFG" class="form-label">Manufacturer:</label>
+                    <input type="text" class="form-control" name="MFG" placeholder="Enter Manufacturer" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ITEM_CODE" class="form-label">Item Code:</label>
+                    <input type="text" class="form-control" name="ITEM_CODE" placeholder="Enter Item Code" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ARC_No" class="form-label">ARC No:</label>
+                    <input type="text" class="form-control" name="ARC_No" placeholder="Enter ARC No" required>
+                </div>
+                <div class="mb-3">
+                    <label for="DESCRIPTION" class="form-label">Description:</label>
+                    <input type="text" class="form-control" name="DESCRIPTION" placeholder="Enter Description" required>
+                </div>
+                <div class="mb-3">
+                    <label for="BUOM" class="form-label">Base Unit of Measure:</label>
+                    <input type="text" class="form-control" name="BUOM" placeholder="Enter Base Unit of Measure">
+                </div>
+                <div class="mb-3">
+                    <label for="PUOM" class="form-label">Purchase Unit of Measure:</label>
+                    <input type="text" class="form-control" name="PUOM" placeholder="Enter Purchase Unit of Measure">
+                </div>
+                <div class="mb-3">
+                    <label for="PACKING" class="form-label">Packing:</label>
+                    <input type="number" class="form-control" name="PACKING" placeholder="Enter Packing">
+                </div>
+                <div class="mb-3">
+                    <label for="BRAND" class="form-label">Brand:</label>
+                    <input type="text" class="form-control" name="BRAND" placeholder="Enter Brand">
+                </div>
+                <div class="mb-3">
+                    <label for="PRODUCT_CODE" class="form-label">Product Code:</label>
+                    <input type="text" class="form-control" name="PRODUCT_CODE" placeholder="Enter Product Code">
+                </div>
+                <div class="mb-3">
+                    <label for="HSN_NO" class="form-label">HSN No:</label>
+                    <input type="number" class="form-control" name="HSN_NO" placeholder="Enter HSN No">
+                </div>
+                <div class="mb-3">
+                    <label for="MRP_(FY_PREVIOUS_YEAR)" class="form-label">MRP (FY PREVIOUS YEAR):</label>
+                    <input type="number" step="0.01" class="form-control" name="MRP_(FY_PREVIOUS_YEAR)" placeholder="Enter MRP MRP_(FY_PREVIOUS_YEAR)">
+                </div>
+                <div class="mb-3">
+                    <label for="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_PREVIOUS_YEAR)" class="form-label">Purchase Price (FY_PREVIOUS_YEAR):</label>
+                    <input type="number" step="0.01" class="form-control" name="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_PREVIOUS_YEAR)" placeholder="Enter Purchase Price (FY-22-23)">
+                </div>
+                <div class="mb-3">
+                    <label for="MRP_(FY_CURRENT_YEAR)" class="form-label">MRP (FY_CURRENT_YEAR):</label>
+                    <input type="number" step="0.01" class="form-control" name="MRP_(FY_CURRENT_YEAR)" placeholder="Enter MRP (FY-23-25)">
+                </div>
+                <div class="mb-3">
+                    <label for="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_CURRENT_YEAR)" class="form-label">Purchase Price (FY_CURRENT_YEAR):</label>
+                    <input type="number" step="0.01" class="form-control" name="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_CURRENT_YEAR)" placeholder="Enter Purchase Price (FY-23-25)">
+                </div>
+                <div class="mb-3">
+                    <label for="CATEGORY" class="form-label">Category:</label>
+                    <input type="text" class="form-control" name="CATEGORY" placeholder="Enter Category">
+                </div>
+                <div class="mb-3">
+                    <label for="MHB1" class="form-label">MHB1:</label>
+                    <input type="number" class="form-control" name="MHB1" placeholder="Enter MHB1">
+                </div>
+                <div class="mb-3">
+                    <label for="MMB1" class="form-label">MMB1:</label>
+                    <input type="number" class="form-control" name="MMB1" placeholder="Enter MHB1">
+                </div>
+                <div class="mb-3">
+                    <label for="MWP1" class="form-label">MWP1:</label>
+                    <input type="number" class="form-control" name="MWP1" placeholder="Enter MWP1">
+                </div>
+                <div class="mb-3">
+                    <label for="MNB1" class="form-label">MNB1:</label>
+                    <input type="number" class="form-control" name="MNB1" placeholder="Enter MNB1">
+                </div>
+                <div class="mb-3">
+                    <label for="KMC1" class="form-label">KMC1:</label>
+                    <input type="number" class="form-control" name="KMC1" placeholder="Enter KMC1">
+                </div>
+                <div class="mb-3">
+                    <label for="MDP1" class="form-label">MDP1:</label>
+                    <input type="number" class="form-control" name="MDP1" placeholder="Enter MDP1">
+                </div>
+                <div class="mb-3">
+                    <label for="MGA1" class="form-label">MGA1:</label>
+                    <input type="number" class="form-control" name="MGA1" placeholder="Enter MGA1">
+                </div>
+                <div class="mb-3">
+                    <label for="MJP1" class="form-label">MJP1:</label>
+                    <input type="number" class="form-control" name="MJP1" placeholder="Enter MJP1">
+                </div>
+                <div class="mb-3">
+                    <label for="MSA1" class="form-label">MSA1:</label>
+                    <input type="number" class="form-control" name="MSA1" placeholder="Enter MSA1">
+                </div>
+                <div class="mb-3">
+                    <label for="MVJ1" class="form-label">MVJ1:</label>
+                    <input type="number" class="form-control" name="MVJ1" placeholder="Enter MVJ1">
+                </div>
+                <div class="mb-3">
+                    <label for="MHSR" class="form-label">MHSR:</label>
+                    <input type="number" class="form-control" name="MHSR" placeholder="Enter MHSR">
+                </div>
+                <div class="mb-3">
+                    <label for="MHVR" class="form-label">MHVR:</label>
+                    <input type="number" class="form-control" name="MHVR" placeholder="Enter MHVR">
+                </div>
+                <div class="mb-3">
+                    <label for="MHPK" class="form-label">MHPK:</label>
+                    <input type="number" class="form-control" name="MHPK" placeholder="Enter MHPK">
+                </div>
+                <div class="mb-3">
+                    <label for="MHPB" class="form-label">MHPB:</label>
+                    <input type="number" class="form-control" name="MHPB" placeholder="Enter MHPB">
+                </div>
+                <div class="mb-3">
+                    <label for="MHYP" class="form-label">MHYP:</label>
+                    <input type="number" class="form-control" name="MHYP" placeholder="Enter MHYP">
+                </div>
+                <div class="mb-3">
+                    <label for="MHHB" class="form-label">MHHB:</label>
+                    <input type="number" class="form-control" name="MHHB" placeholder="Enter MHHB">
+                </div>
+                <div class="mb-3">
+                    <label for="MHDB" class="form-label">MHDB:</label>
+                    <input type="number" class="form-control" name="MHDB" placeholder="Enter MHDB">
+                </div>
+                <div class="mb-3">
+                    <label for="MHMY" class="form-label">MHMY:</label>
+                    <input type="number" class="form-control" name="MHMY" placeholder="Enter MHMY">
+                </div>
+                <div class="mb-3">
+                    <label for="MHGG" class="form-label">MHGG:</label>
+                    <input type="number" class="form-control" name="MHGG" placeholder="Enter MHGG">
+                </div>
+                <div class="mb-3">
+                    <label for="MHP1" class="form-label">MHP1:</label>
+                    <input type="number" class="form-control" name="MHP1" placeholder="Enter MHP1">
+                </div>
+                <div class="mb-3">
+                    <label for="MHGH" class="form-label">MHGH:</label>
+                    <input type="number" class="form-control" name="MHGH" placeholder="Enter MHGH">
+                </div>
+                <div class="mb-3">
+                    <label for="MHSL" class="form-label">MHSL:</label>
+                    <input type="number" class="form-control" name="MHSL" placeholder="Enter MHSL">
+                </div>
+                <div class="mb-3">
+                    <label for="MDHK" class="form-label">MDHK:</label>
+                    <input type="number" class="form-control" name="MDHK" placeholder="Enter MDHK">
+                </div>
+                <div class="mb-3">
+                    <label for="MSLA" class="form-label">MSLA:</label>
+                    <input type="number" class="form-control" name="MSLA" placeholder="Enter MSLA">
+                </div>
+                <div class="mb-3">
+                    <label for="MBBS" class="form-label">MBBS:</label>
+                    <input type="number" class="form-control" name="MBBS" placeholder="Enter MBBS">
+                </div>
+                <div class="mb-3">
+                    <label for="MMKA" class="form-label">MMKA:</label>
+                    <input type="number" class="form-control" name="MMKA" placeholder="Enter MMKA">
+                </div>
+                <div class="mb-3">
+                    <label for="MHKM" class="form-label">MHKM:</label>
+                    <input type="number" class="form-control" name="MHKM" placeholder="Enter MHKM">
+                </div>
+                <div class="mb-3">
+                    <label for="MEST" class="form-label">MEST:</label>
+                    <input type="number" class="form-control" name="MEST" placeholder="Enter MEST">
+                </div>
+                <div class="mb-3">
+                    <label for="MPPP" class="form-label">MPPP:</label>
+                    <input type="number" class="form-control" name="MPPP" placeholder="Enter MPPP">
+                </div>
+                <div class="mb-3">
+                    <label for="MHNB" class="form-label">MHNB:</label>
+                    <input type="number" class="form-control" name="MHNB" placeholder="Enter MHNB">
+                </div>
+                <div class="mb-3">
+                    <label for="MHSB" class="form-label">MHSB:</label>
+                    <input type="number" class="form-control" name="MHSB" placeholder="Enter MHSB">
+                </div> 
+                <div class="mb-3">
+                    <label for="MHMR" class="form-label">MHMR:</label>
+                    <input type="text" class="form-control" name="MHMR" placeholder="Enter MHMR">
+                </div>
+                <div class="mb-3">
+                    <label for="MHRA" class="form-label">MHRA:</label>
+                    <input type="number" class="form-control" name="MHRA" placeholder="Enter MHRA">
+                </div>
+                <div class="mb-3">
+                    <label for="MHRN" class="form-label">MHRN:</label>
+                    <input type="number" class="form-control" name="MHRN" placeholder="Enter MHRN">
+                </div>
+                <div class="mb-3">
+                    <label for="MHSG" class="form-label">MHSG:</label>
+                    <input type="number" class="form-control" name="MHSG" placeholder="Enter MHSG">
+                </div>
+                <div class="mb-3">
+                    <label for="MHRP" class="form-label">MHRP:</label>
+                    <input type="number" class="form-control" name="MHRP" placeholder="Enter MHRP">
+                </div>
+                <div class="mb-3">
+                    <label for="MHEC" class="form-label">MHEC:</label>
+                    <input type="number" class="form-control" name="MHEC" placeholder="Enter MHEC">
+                </div>
+                <div class="mb-3">
+                    <label for="CM_TEAM_HEAD" class="form-label">CM Team Head:</label>
+                    <input type="text" class="form-control" name="CM_TEAM_HEAD" placeholder="Enter CM Team Head">
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" form="insertForm" class="btn btn-primary">Insert</button>
+                    <a href="/" class="btn btn-secondary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $('#insertForm').on('submit', function(e) {
+                    e.preventDefault();
+                    
+                    $.ajax({
+                        url: '/insert',
+                        type: 'POST',
+                        data: $(this).serialize(),
+                        success: function(response) {
+                            alert('Item inserted successfully!');
+                            $('#insertForm')[0].reset();
+                        },
+                        error: function() {
+                            alert('Error inserting item. Please try again.');
+                        }
+                    });
+                });
+            });
+        </script>
+                 
+        </div>
+ 
+        <div class="tab-pane fade" id="pharma" role="tabpanel" aria-labelledby="pharma-tab">
+ 
+            <form method="POST" action="{{ url_for('pharma.insert_item') }}" target="_blank"> 
+            <div cslass="row mb-3">
+              <div class="col-md-6">
+
+                <div class="mb-3">
+                    <label for="FINANCIAL_YEAR" class="form-label">Financial Year:</label>
+                    <input type="text" class="form-control" name="FINANCIAL_YEAR" placeholder="Enter FINANCIAL YEAR" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="RC_EFFECTIVE_DATE_FROM" class="form-label">RC Effective Date From:</label>
+                        <input type="date" class="form-control" name="RC_EFFECTIVE_DATE_FROM" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="END_DATE" class="form-label">End Date:</label>
+                        <input type="date" class="form-control" name="END_DATE" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="TYPE" class="form-label">Type:</label>
+                        <input type="text" class="form-control" name="TYPE" placeholder="Enter Type" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="FORMULATION" class="form-label">Formulation:</label>
+                        <input type="text" class="form-control" name="FORMULATION" placeholder="Enter FORMULATION" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="MFG" class="form-label">Manufacturer:</label>
+                        <input type="text" class="form-control" name="MFG" placeholder="Enter Manufacturer" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ARC_No" class="form-label">ARC No:</label>
+                        <input type="text" class="form-control" name="ARC_No" placeholder="Enter ARC No" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ITEM_CODE" class="form-label">Item Code:</label>
+                        <input type="text" class="form-control" name="ITEM_CODE" placeholder="Enter Item Code" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="DESCRIPTION" class="form-label">Description:</label>
+                        <input type="text" class="form-control" name="DESCRIPTION" placeholder="Enter Description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="PACK_SIZE" class="form-label">Pack Size:</label>
+                        <input type="number" class="form-control" name="PACK_SIZE" placeholder="Enter Pack Size" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="PUOM" class="form-label">Purchase Unit of Measure:</label>
+                        <input type="text" class="form-control" name="PUOM" placeholder="Enter Purchase Unit of Measure">
+                    </div>
+                    <div class="mb-3">
+                        <label for="DENOMINATOR" class="form-label">Denominator:</label>
+                        <input type="number" class="form-control" name="DENOMINATOR" placeholder="Enter Denominator" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="NUMERATOR" class="form-label">Numerator:</label>
+                        <input type="number" class="form-control" name="NUMERATOR" placeholder="Enter Numerator" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="BUOM" class="form-label">Base Unit of Measure:</label>
+                        <input type="text" class="form-control" name="BUOM" placeholder="Enter Base Unit of Measure">
+                    </div>
+                   
+                    <div class="mb-3">
+                        <label for="GST_PERCENT" class="form-label">GST %:</label>
+                        <input type="number" class="form-control" name="GST_PERCENT" placeholder="Enter GST %">
+                    </div>
+                     
+                   
+                    <div class="mb-3">
+                        <label for="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY)" class="form-label">Purchase Price Per Unit Without Tax (FY):</label>
+                        <input type="number" step="0.01" class="form-control" name="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY)" placeholder="Enter MRP MRP_(FY_PREVIOUS_YEAR)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="PURCHASE_PACK_PRICE_WITHOUT_TAX_FOR_(FY)" class="form-label">Purchase Pack Price Without Tax (FY):</label>
+                        <input type="number" step="0.01" class="form-control" name="PURCHASE_PACK_PRICE_WITHOUT_TAX_FOR_(FY)" placeholder="Enter Purchase Price (FY-22-23)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="PURCHASE_MRP_PER_UNIT_WITHOUT_TAX_FOR_(FY)" class="form-label">Purchase MRP Unit Without Tax(FY):</label>
+                        <input type="number" step="0.01" class="form-control" name="PURCHASE_MRP_PER_UNIT_WITHOUT_TAX_FOR_(FY)" placeholder="Enter MRP (FY-23-25)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="PURCHASE_PACK_MRP_WITHOUT_TAX_FOR_(FY)" class="form-label">Purchase Pack MRP Without Tax (FY):</label>
+                        <input type="number" step="0.01" class="form-control" name="PURCHASE_PACK_MRP_WITHOUT_TAX_FOR_(FY)" placeholder="Enter Purchase Price (FY-23-25)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="HSN_NO" class="form-label">HSN No:</label>
+                        <input type="number" class="form-control" name="HSN_NO" placeholder="Enter HSN No">
+                    </div>
+                    <div class="mb-3">
+                        <label for="OFFERS" class="form-label">Offers:</label>
+                        <input type="text" class="form-control" name="OFFERS" placeholder="Enter Offers">
+                    </div>
+                    <div class="mb-3">
+                        <label for="CATEGORY" class="form-label">Category:</label>
+                        <input type="text" class="form-control" name="CATEGORY" placeholder="Enter Category">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHB1" class="form-label">MHB1:</label>
+                        <input type="number" class="form-control" name="MHB1" placeholder="Enter MHB1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MMB1" class="form-label">MMB1:</label>
+                        <input type="number" class="form-control" name="MMB1" placeholder="Enter MHB1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MWP1" class="form-label">MWP1:</label>
+                        <input type="number" class="form-control" name="MWP1" placeholder="Enter MWP1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MNB1" class="form-label">MNB1:</label>
+                        <input type="number" class="form-control" name="MNB1" placeholder="Enter MNB1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="KMC1" class="form-label">KMC1:</label>
+                        <input type="number" class="form-control" name="KMC1" placeholder="Enter KMC1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MDP1" class="form-label">MDP1:</label>
+                        <input type="number" class="form-control" name="MDP1" placeholder="Enter MDP1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MGA1" class="form-label">MGA1:</label>
+                        <input type="number" class="form-control" name="MGA1" placeholder="Enter MGA1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MJP1" class="form-label">MJP1:</label>
+                        <input type="number" class="form-control" name="MJP1" placeholder="Enter MJP1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MSA1" class="form-label">MSA1:</label>
+                        <input type="number" class="form-control" name="MSA1" placeholder="Enter MSA1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MVJ1" class="form-label">MVJ1:</label>
+                        <input type="number" class="form-control" name="MVJ1" placeholder="Enter MVJ1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHSR" class="form-label">MHSR:</label>
+                        <input type="number" class="form-control" name="MHSR" placeholder="Enter MHSR">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHVR" class="form-label">MHVR:</label>
+                        <input type="number" class="form-control" name="MHVR" placeholder="Enter MHVR">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHPK" class="form-label">MHPK:</label>
+                        <input type="number" class="form-control" name="MHPK" placeholder="Enter MHPK">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHPB" class="form-label">MHPB:</label>
+                        <input type="number" class="form-control" name="MHPB" placeholder="Enter MHPB">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHYP" class="form-label">MHYP:</label>
+                        <input type="number" class="form-control" name="MHYP" placeholder="Enter MHYP">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHHB" class="form-label">MHHB:</label>
+                        <input type="number" class="form-control" name="MHHB" placeholder="Enter MHHB">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHDB" class="form-label">MHDB:</label>
+                        <input type="number" class="form-control" name="MHDB" placeholder="Enter MHDB">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHMY" class="form-label">MHMY:</label>
+                        <input type="number" class="form-control" name="MHMY" placeholder="Enter MHMY">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHGG" class="form-label">MHGG:</label>
+                        <input type="number" class="form-control" name="MHGG" placeholder="Enter MHGG">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHP1" class="form-label">MHP1:</label>
+                        <input type="number" class="form-control" name="MHP1" placeholder="Enter MHP1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHGH" class="form-label">MHGH:</label>
+                        <input type="number" class="form-control" name="MHGH" placeholder="Enter MHGH">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHSL" class="form-label">MHSL:</label>
+                        <input type="number" class="form-control" name="MHSL" placeholder="Enter MHSL">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MDHK" class="form-label">MDHK:</label>
+                        <input type="number" class="form-control" name="MDHK" placeholder="Enter MDHK">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MSLA" class="form-label">MSLA:</label>
+                        <input type="number" class="form-control" name="MSLA" placeholder="Enter MSLA">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MBBS" class="form-label">MBBS:</label>
+                        <input type="number" class="form-control" name="MBBS" placeholder="Enter MBBS">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MMKA" class="form-label">MMKA:</label>
+                        <input type="number" class="form-control" name="MMKA" placeholder="Enter MMKA">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHKM" class="form-label">MHKM:</label>
+                        <input type="number" class="form-control" name="MHKM" placeholder="Enter MHKM">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MEST" class="form-label">MEST:</label>
+                        <input type="number" class="form-control" name="MEST" placeholder="Enter MEST">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MPPP" class="form-label">MPPP:</label>
+                        <input type="number" class="form-control" name="MPPP" placeholder="Enter MPPP">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHNB" class="form-label">MHNB:</label>
+                        <input type="number" class="form-control" name="MHNB" placeholder="Enter MHNB">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHSB" class="form-label">MHSB:</label>
+                        <input type="number" class="form-control" name="MHSB" placeholder="Enter MHSB">
+                    </div> 
+                    <div class="mb-3">
+                        <label for="MHMR" class="form-label">MHMR:</label>
+                        <input type="text" class="form-control" name="MHMR" placeholder="Enter MHMR">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHRA" class="form-label">MHRA:</label>
+                        <input type="number" class="form-control" name="MHRA" placeholder="Enter MHRA">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHRN" class="form-label">MHRN:</label>
+                        <input type="number" class="form-control" name="MHRN" placeholder="Enter sMHRN">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHSG" class="form-label">MHSG:</label>
+                        <input type="number" class="form-control" name="MHSG" placeholder="Enter MHSG">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHRP" class="form-label">MHRP:</label>
+                        <input type="number" class="form-control" name="MHRP" placeholder="Enter MHRP">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHEC" class="form-label">MHEC:</label>
+                        <input type="number" class="form-control" name="MHEC" placeholder="Enter MHEC">
+                    </div>
+                    <div class="mb-3">
+                        <label for="CM_TEAM_HEAD" class="form-label">CM Team Head:</label>
+                        <input type="text" class="form-control" name="CM_TEAM_HEAD" placeholder="Enter CM Team Head">
+                    </div>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+        <div class="card-footer">
+            <button type="submit" form="insertForm" class="btn btn-primary">Insert</button>
+            <a href="/" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#insertForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            $.ajax({
+                url: '/insert',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    alert('Item inserted successfully!');
+                    $('#insertForm')[0].reset();
+                },
+                error: function() {
+                    alert('Error inserting item. Please try again.');
+                }
+            });
+        });
+    });
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html> -->
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Insert ITEM DATA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Poppins', sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .card {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .card-header {
+      background-color: white;
+      color: #007bff;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 15px;
+      border-bottom: none;
+    }
+    .card-footer {
+      background-color: white;
+      padding: 15px;
+      text-align: center;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .btn-primary {
+      width: 120px;
+      height: 40px;
+    }
+    .tab-wrapper {
+      margin-top: 0.5rem; /* Reduced from 1rem */
+      margin-bottom: 0.5rem; /* Reduced from 1rem */
+      padding-left: 0.5rem;  /* Added slight padding */
+      padding-right: 0.5rem;
+    }
+    .tab-content {
+      padding: 0.75rem 1rem; /* Reduced top padding a bit */
+    }
+    .tab-pane > .p-4 {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 1rem !important; /* Ensure consistent padding */
+    }
+    .nav-tabs {
+      border-bottom: 1px solid #dee2e6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">Insert ITEM DATA</div>
+
+   
+    <div class="tab-wrapper">
+      <ul class="nav nav-tabs" id="itemTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="gc-tab" data-bs-toggle="tab" data-bs-target="#gc" type="button" role="tab">
+            GC
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pharma-tab" data-bs-toggle="tab" data-bs-target="#pharma" type="button" role="tab">
+            Pharma
+          </button>
+        </li>
+      </ul>
+    </div>
+
+ 
+    <div class="tab-content">
+
+    
+      <div class="tab-pane fade show active" id="gc" role="tabpanel">
+        <div class="p-4">
+          <form method="POST" action="/insert">
+            <div class="mb-3">
+              <label class="form-label">Financial Year:</label>
+              <input type="text" class="form-control" name="FINANCIAL_YEAR" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">RC Effective Date From:</label>
+              <input type="date" class="form-control" name="RC_EFFECTIVE_DATE_FROM" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">End Date:</label>
+              <input type="date" class="form-control" name="END_DATE" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Type:</label>
+              <input type="text" class="form-control" name="TYPE" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Manufacturer:</label>
+              <input type="text" class="form-control" name="MFG" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Item Code:</label>
+              <input type="text" class="form-control" name="ITEM_CODE" required />
+            </div>
+            <div class="card-footer mt-3">
+              <button type="submit" class="btn btn-success">Insert GC Item</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      
+      <div class="tab-pane fade" id="pharma" role="tabpanel">
+        <div class="p-4">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% endwith %}
+
+          <form method="POST" action="/pharma/insert">
+            <div class="mb-3">
+              <label class="form-label">Financial Year:</label>
+              <input type="text" class="form-control" name="FINANCIAL_YEAR" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">RC Effective Date From:</label>
+              <input type="date" class="form-control" name="RC_EFFECTIVE_DATE_FROM" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">End Date:</label>
+              <input type="date" class="form-control" name="END_DATE" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Type:</label>
+              <input type="text" class="form-control" name="TYPE" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Formulation:</label>
+              <input type="text" class="form-control" name="FORMULATION" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Manufacturer:</label>
+              <input type="text" class="form-control" name="MFG" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">ARC No:</label>
+              <input type="text" class="form-control" name="ARC_No" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Item Code:</label>
+              <input type="text" class="form-control" name="ITEM_CODE" required />
+            </div>
+            <div class="card-footer mt-3">
+              <button type="submit" class="btn btn-success">Insert Pharma Item</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>  
+
+    <div class="text-center mt-3 mb-3">
+      <a href="/" class="btn btn-secondary">Back to Home</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Insert ITEM DATA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Poppins', sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .card {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .card-header {
+      background-color: white;
+      color: #007bff;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 15px;
+      border-bottom: none;
+    }
+    .card-footer {
+      background-color: white;
+      padding: 15px;
+      text-align: center;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .btn-primary {
+      width: 120px;
+      height: 40px;
+    }
+    .tab-wrapper {
+      margin-top: 0.5rem; /* Reduced from 1rem */
+      margin-bottom: 0.5rem; /* Reduced from 1rem */
+      padding-left: 0.5rem;  /* Added slight padding */
+      padding-right: 0.5rem;
+    }
+    .tab-content {
+      padding: 0.75rem 1rem; /* Reduced top padding a bit */
+    }
+    .tab-pane > .p-4 {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 1rem !important; /* Ensure consistent padding */
+    }
+    .nav-tabs {
+      border-bottom: 1px solid #dee2e6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">Insert ITEM DATA</div>
+
+    <!-- Nav Tabs Wrapper with spacing -->
+    <div class="tab-wrapper">
+      <ul class="nav nav-tabs" id="itemTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="gc-tab" data-bs-toggle="tab" data-bs-target="#gc" type="button" role="tab">
+            GC
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pharma-tab" data-bs-toggle="tab" data-bs-target="#pharma" type="button" role="tab">
+            Pharma
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Tab Contents -->
+    <div class="tab-content">
+
+      <!-- GC Form -->
+      <div class="tab-pane fade show active" id="gc" role="tabpanel">
+        <div class="p-4">
+          <form method="POST" action="/insert">
+            <div class="mb-3">
+                <label for="FINANCIAL_YEAR" class="form-label">Financial Year:</label>
+                <input type="text" class="form-control" name="FINANCIAL_YEAR" placeholder="Enter FINANCIAL YEAR" required>
+            </div>
+                <div class="mb-3">
+                    <label for="RC_EFFECTIVE_DATE_FROM" class="form-label">RC Effective Date From:</label>
+                    <input type="date" class="form-control" name="RC_EFFECTIVE_DATE_FROM" required>
+                </div>
+                <div class="mb-3">
+                    <label for="END_DATE" class="form-label">End Date:</label>
+                    <input type="date" class="form-control" name="END_DATE" required>
+                </div>
+                <div class="mb-3">
+                    <label for="TYPE" class="form-label">Type:</label>
+                    <input type="text" class="form-control" name="TYPE" placeholder="Enter Type" required>
+                </div>
+                <div class="mb-3">
+                    <label for="MFG" class="form-label">Manufacturer:</label>
+                    <input type="text" class="form-control" name="MFG" placeholder="Enter Manufacturer" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ITEM_CODE" class="form-label">Item Code:</label>
+                    <input type="text" class="form-control" name="ITEM_CODE" placeholder="Enter Item Code" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ARC_No" class="form-label">ARC No:</label>
+                    <input type="text" class="form-control" name="ARC_No" placeholder="Enter ARC No" required>
+                </div>
+                <div class="mb-3">
+                    <label for="DESCRIPTION" class="form-label">Description:</label>
+                    <input type="text" class="form-control" name="DESCRIPTION" placeholder="Enter Description" required>
+                </div>
+                <div class="mb-3">
+                    <label for="BUOM" class="form-label">Base Unit of Measure:</label>
+                    <input type="text" class="form-control" name="BUOM" placeholder="Enter Base Unit of Measure">
+                </div>
+                <div class="mb-3">
+                    <label for="PUOM" class="form-label">Purchase Unit of Measure:</label>
+                    <input type="text" class="form-control" name="PUOM" placeholder="Enter Purchase Unit of Measure">
+                </div>
+                <div class="mb-3">
+                    <label for="PACKING" class="form-label">Packing:</label>
+                    <input type="number" class="form-control" name="PACKING" placeholder="Enter Packing">
+                </div>
+                <div class="mb-3">
+                    <label for="BRAND" class="form-label">Brand:</label>
+                    <input type="text" class="form-control" name="BRAND" placeholder="Enter Brand">
+                </div>
+                <div class="mb-3">
+                    <label for="PRODUCT_CODE" class="form-label">Product Code:</label>
+                    <input type="text" class="form-control" name="PRODUCT_CODE" placeholder="Enter Product Code">
+                </div>
+                <div class="mb-3">
+                    <label for="HSN_NO" class="form-label">HSN No:</label>
+                    <input type="number" class="form-control" name="HSN_NO" placeholder="Enter HSN No">
+                </div>
+                <div class="mb-3">
+                    <label for="MRP_(FY_PREVIOUS_YEAR)" class="form-label">MRP (FY PREVIOUS YEAR):</label>
+                    <input type="number" step="0.01" class="form-control" name="MRP_(FY_PREVIOUS_YEAR)" placeholder="Enter MRP MRP_(FY_PREVIOUS_YEAR)">
+                </div>
+                <div class="mb-3">
+                    <label for="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_PREVIOUS_YEAR)" class="form-label">Purchase Price (FY_PREVIOUS_YEAR):</label>
+                    <input type="number" step="0.01" class="form-control" name="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_PREVIOUS_YEAR)" placeholder="Enter Purchase Price (FY-22-23)">
+                </div>
+                <div class="mb-3">
+                    <label for="MRP_(FY_CURRENT_YEAR)" class="form-label">MRP (FY_CURRENT_YEAR):</label>
+                    <input type="number" step="0.01" class="form-control" name="MRP_(FY_CURRENT_YEAR)" placeholder="Enter MRP (FY-23-25)">
+                </div>
+                <div class="mb-3">
+                    <label for="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_CURRENT_YEAR)" class="form-label">Purchase Price (FY_CURRENT_YEAR):</label>
+                    <input type="number" step="0.01" class="form-control" name="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY_CURRENT_YEAR)" placeholder="Enter Purchase Price (FY-23-25)">
+                </div>
+                <div class="mb-3">
+                    <label for="CATEGORY" class="form-label">Category:</label>
+                    <input type="text" class="form-control" name="CATEGORY" placeholder="Enter Category">
+                </div>
+                <div class="mb-3">
+                    <label for="MHB1" class="form-label">MHB1:</label>
+                    <input type="number" class="form-control" name="MHB1" placeholder="Enter MHB1">
+                </div>
+                <div class="mb-3">
+                    <label for="MMB1" class="form-label">MMB1:</label>
+                    <input type="number" class="form-control" name="MMB1" placeholder="Enter MHB1">
+                </div>
+                <div class="mb-3">
+                    <label for="MWP1" class="form-label">MWP1:</label>
+                    <input type="number" class="form-control" name="MWP1" placeholder="Enter MWP1">
+                </div>
+                <div class="mb-3">
+                    <label for="MNB1" class="form-label">MNB1:</label>
+                    <input type="number" class="form-control" name="MNB1" placeholder="Enter MNB1">
+                </div>
+                <div class="mb-3">
+                    <label for="KMC1" class="form-label">KMC1:</label>
+                    <input type="number" class="form-control" name="KMC1" placeholder="Enter KMC1">
+                </div>
+                <div class="mb-3">
+                    <label for="MDP1" class="form-label">MDP1:</label>
+                    <input type="number" class="form-control" name="MDP1" placeholder="Enter MDP1">
+                </div>
+                <div class="mb-3">
+                    <label for="MGA1" class="form-label">MGA1:</label>
+                    <input type="number" class="form-control" name="MGA1" placeholder="Enter MGA1">
+                </div>
+                <div class="mb-3">
+                    <label for="MJP1" class="form-label">MJP1:</label>
+                    <input type="number" class="form-control" name="MJP1" placeholder="Enter MJP1">
+                </div>
+                <div class="mb-3">
+                    <label for="MSA1" class="form-label">MSA1:</label>
+                    <input type="number" class="form-control" name="MSA1" placeholder="Enter MSA1">
+                </div>
+                <div class="mb-3">
+                    <label for="MVJ1" class="form-label">MVJ1:</label>
+                    <input type="number" class="form-control" name="MVJ1" placeholder="Enter MVJ1">
+                </div>
+                <div class="mb-3">
+                    <label for="MHSR" class="form-label">MHSR:</label>
+                    <input type="number" class="form-control" name="MHSR" placeholder="Enter MHSR">
+                </div>
+                <div class="mb-3">
+                    <label for="MHVR" class="form-label">MHVR:</label>
+                    <input type="number" class="form-control" name="MHVR" placeholder="Enter MHVR">
+                </div>
+                <div class="mb-3">
+                    <label for="MHPK" class="form-label">MHPK:</label>
+                    <input type="number" class="form-control" name="MHPK" placeholder="Enter MHPK">
+                </div>
+                <div class="mb-3">
+                    <label for="MHPB" class="form-label">MHPB:</label>
+                    <input type="number" class="form-control" name="MHPB" placeholder="Enter MHPB">
+                </div>
+                <div class="mb-3">
+                    <label for="MHYP" class="form-label">MHYP:</label>
+                    <input type="number" class="form-control" name="MHYP" placeholder="Enter MHYP">
+                </div>
+                <div class="mb-3">
+                    <label for="MHHB" class="form-label">MHHB:</label>
+                    <input type="number" class="form-control" name="MHHB" placeholder="Enter MHHB">
+                </div>
+                <div class="mb-3">
+                    <label for="MHDB" class="form-label">MHDB:</label>
+                    <input type="number" class="form-control" name="MHDB" placeholder="Enter MHDB">
+                </div>
+                <div class="mb-3">
+                    <label for="MHMY" class="form-label">MHMY:</label>
+                    <input type="number" class="form-control" name="MHMY" placeholder="Enter MHMY">
+                </div>
+                <div class="mb-3">
+                    <label for="MHGG" class="form-label">MHGG:</label>
+                    <input type="number" class="form-control" name="MHGG" placeholder="Enter MHGG">
+                </div>
+                <div class="mb-3">
+                    <label for="MHP1" class="form-label">MHP1:</label>
+                    <input type="number" class="form-control" name="MHP1" placeholder="Enter MHP1">
+                </div>
+                <div class="mb-3">
+                    <label for="MHGH" class="form-label">MHGH:</label>
+                    <input type="number" class="form-control" name="MHGH" placeholder="Enter MHGH">
+                </div>
+                <div class="mb-3">
+                    <label for="MHSL" class="form-label">MHSL:</label>
+                    <input type="number" class="form-control" name="MHSL" placeholder="Enter MHSL">
+                </div>
+                <div class="mb-3">
+                    <label for="MDHK" class="form-label">MDHK:</label>
+                    <input type="number" class="form-control" name="MDHK" placeholder="Enter MDHK">
+                </div>
+                <div class="mb-3">
+                    <label for="MSLA" class="form-label">MSLA:</label>
+                    <input type="number" class="form-control" name="MSLA" placeholder="Enter MSLA">
+                </div>
+                <div class="mb-3">
+                    <label for="MBBS" class="form-label">MBBS:</label>
+                    <input type="number" class="form-control" name="MBBS" placeholder="Enter MBBS">
+                </div>
+                <div class="mb-3">
+                    <label for="MMKA" class="form-label">MMKA:</label>
+                    <input type="number" class="form-control" name="MMKA" placeholder="Enter MMKA">
+                </div>
+                <div class="mb-3">
+                    <label for="MHKM" class="form-label">MHKM:</label>
+                    <input type="number" class="form-control" name="MHKM" placeholder="Enter MHKM">
+                </div>
+                <div class="mb-3">
+                    <label for="MEST" class="form-label">MEST:</label>
+                    <input type="number" class="form-control" name="MEST" placeholder="Enter MEST">
+                </div>
+                <div class="mb-3">
+                    <label for="MPPP" class="form-label">MPPP:</label>
+                    <input type="number" class="form-control" name="MPPP" placeholder="Enter MPPP">
+                </div>
+                <div class="mb-3">
+                    <label for="MHNB" class="form-label">MHNB:</label>
+                    <input type="number" class="form-control" name="MHNB" placeholder="Enter MHNB">
+                </div>
+                <div class="mb-3">
+                    <label for="MHSB" class="form-label">MHSB:</label>
+                    <input type="number" class="form-control" name="MHSB" placeholder="Enter MHSB">
+                </div> 
+                <div class="mb-3">
+                    <label for="MHMR" class="form-label">MHMR:</label>
+                    <input type="text" class="form-control" name="MHMR" placeholder="Enter MHMR">
+                </div>
+                <div class="mb-3">
+                    <label for="MHRA" class="form-label">MHRA:</label>
+                    <input type="number" class="form-control" name="MHRA" placeholder="Enter MHRA">
+                </div>
+                <div class="mb-3">
+                    <label for="MHRN" class="form-label">MHRN:</label>
+                    <input type="number" class="form-control" name="MHRN" placeholder="Enter MHRN">
+                </div>
+                <div class="mb-3">
+                    <label for="MHSG" class="form-label">MHSG:</label>
+                    <input type="number" class="form-control" name="MHSG" placeholder="Enter MHSG">
+                </div>
+                <div class="mb-3">
+                    <label for="MHRP" class="form-label">MHRP:</label>
+                    <input type="number" class="form-control" name="MHRP" placeholder="Enter MHRP">
+                </div>
+                <div class="mb-3">
+                    <label for="MHEC" class="form-label">MHEC:</label>
+                    <input type="number" class="form-control" name="MHEC" placeholder="Enter MHEC">
+                </div>
+                <div class="mb-3">
+                    <label for="CM_TEAM_HEAD" class="form-label">CM Team Head:</label>
+                    <input type="text" class="form-control" name="CM_TEAM_HEAD" placeholder="Enter CM Team Head">
+                </div>
+            
+            <div class="card-footer mt-3">
+              <button type="submit" class="btn btn-success">Insert GC Item</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Pharma Form -->
+      <div class="tab-pane fade" id="pharma" role="tabpanel">
+        <div class="p-4">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% endwith %}
+
+          <form method="POST" action="/pharma/insert">
+             <div class="mb-3">
+                    <label for="FINANCIAL_YEAR" class="form-label">Financial Year:</label>
+                    <input type="text" class="form-control" name="FINANCIAL_YEAR" placeholder="Enter FINANCIAL YEAR" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="RC_EFFECTIVE_DATE_FROM" class="form-label">RC Effective Date From:</label>
+                        <input type="date" class="form-control" name="RC_EFFECTIVE_DATE_FROM" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="END_DATE" class="form-label">End Date:</label>
+                        <input type="date" class="form-control" name="END_DATE" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="TYPE" class="form-label">Type:</label>
+                        <input type="text" class="form-control" name="TYPE" placeholder="Enter Type" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="FORMULATION" class="form-label">Formulation:</label>
+                        <input type="text" class="form-control" name="FORMULATION" placeholder="Enter FORMULATION" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="MFG" class="form-label">Manufacturer:</label>
+                        <input type="text" class="form-control" name="MFG" placeholder="Enter Manufacturer" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ARC_No" class="form-label">ARC No:</label>
+                        <input type="text" class="form-control" name="ARC_No" placeholder="Enter ARC No" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ITEM_CODE" class="form-label">Item Code:</label>
+                        <input type="text" class="form-control" name="ITEM_CODE" placeholder="Enter Item Code" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="DESCRIPTION" class="form-label">Description:</label>
+                        <input type="text" class="form-control" name="DESCRIPTION" placeholder="Enter Description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="PACK_SIZE" class="form-label">Pack Size:</label>
+                        <input type="number" class="form-control" name="PACK_SIZE" placeholder="Enter Pack Size" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="PUOM" class="form-label">Purchase Unit of Measure:</label>
+                        <input type="text" class="form-control" name="PUOM" placeholder="Enter Purchase Unit of Measure">
+                    </div>
+                    <div class="mb-3">
+                        <label for="DENOMINATOR" class="form-label">Denominator:</label>
+                        <input type="number" class="form-control" name="DENOMINATOR" placeholder="Enter Denominator" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="NUMERATOR" class="form-label">Numerator:</label>
+                        <input type="number" class="form-control" name="NUMERATOR" placeholder="Enter Numerator" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="BUOM" class="form-label">Base Unit of Measure:</label>
+                        <input type="text" class="form-control" name="BUOM" placeholder="Enter Base Unit of Measure">
+                    </div>
+                   
+                    <div class="mb-3">
+                        <label for="GST_PERCENT" class="form-label">GST %:</label>
+                        <input type="number" class="form-control" name="GST_PERCENT" placeholder="Enter GST %">
+                    </div>
+                     
+                   
+                    <div class="mb-3">
+                        <label for="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY)" class="form-label">Purchase Price Per Unit Without Tax (FY):</label>
+                        <input type="number" step="0.01" class="form-control" name="PURCHASE_PRICE_PER_UNIT_WITHOUT_TAX_FOR_(FY)" placeholder="Enter MRP MRP_(FY_PREVIOUS_YEAR)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="PURCHASE_PACK_PRICE_WITHOUT_TAX_FOR_(FY)" class="form-label">Purchase Pack Price Without Tax (FY):</label>
+                        <input type="number" step="0.01" class="form-control" name="PURCHASE_PACK_PRICE_WITHOUT_TAX_FOR_(FY)" placeholder="Enter Purchase Price (FY-22-23)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="PURCHASE_MRP_PER_UNIT_WITHOUT_TAX_FOR_(FY)" class="form-label">Purchase MRP Unit Without Tax(FY):</label>
+                        <input type="number" step="0.01" class="form-control" name="PURCHASE_MRP_PER_UNIT_WITHOUT_TAX_FOR_(FY)" placeholder="Enter MRP (FY-23-25)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="PURCHASE_PACK_MRP_WITHOUT_TAX_FOR_(FY)" class="form-label">Purchase Pack MRP Without Tax (FY):</label>
+                        <input type="number" step="0.01" class="form-control" name="PURCHASE_PACK_MRP_WITHOUT_TAX_FOR_(FY)" placeholder="Enter Purchase Price (FY-23-25)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="HSN_NO" class="form-label">HSN No:</label>
+                        <input type="number" class="form-control" name="HSN_NO" placeholder="Enter HSN No">
+                    </div>
+                    <div class="mb-3">
+                        <label for="OFFERS" class="form-label">Offers:</label>
+                        <input type="text" class="form-control" name="OFFERS" placeholder="Enter Offers">
+                    </div>
+                    <div class="mb-3">
+                        <label for="CATEGORY" class="form-label">Category:</label>
+                        <input type="text" class="form-control" name="CATEGORY" placeholder="Enter Category">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHB1" class="form-label">MHB1:</label>
+                        <input type="number" class="form-control" name="MHB1" placeholder="Enter MHB1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MMB1" class="form-label">MMB1:</label>
+                        <input type="number" class="form-control" name="MMB1" placeholder="Enter MHB1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MWP1" class="form-label">MWP1:</label>
+                        <input type="number" class="form-control" name="MWP1" placeholder="Enter MWP1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MNB1" class="form-label">MNB1:</label>
+                        <input type="number" class="form-control" name="MNB1" placeholder="Enter MNB1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="KMC1" class="form-label">KMC1:</label>
+                        <input type="number" class="form-control" name="KMC1" placeholder="Enter KMC1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MDP1" class="form-label">MDP1:</label>
+                        <input type="number" class="form-control" name="MDP1" placeholder="Enter MDP1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MGA1" class="form-label">MGA1:</label>
+                        <input type="number" class="form-control" name="MGA1" placeholder="Enter MGA1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MJP1" class="form-label">MJP1:</label>
+                        <input type="number" class="form-control" name="MJP1" placeholder="Enter MJP1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MSA1" class="form-label">MSA1:</label>
+                        <input type="number" class="form-control" name="MSA1" placeholder="Enter MSA1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MVJ1" class="form-label">MVJ1:</label>
+                        <input type="number" class="form-control" name="MVJ1" placeholder="Enter MVJ1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHSR" class="form-label">MHSR:</label>
+                        <input type="number" class="form-control" name="MHSR" placeholder="Enter MHSR">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHVR" class="form-label">MHVR:</label>
+                        <input type="number" class="form-control" name="MHVR" placeholder="Enter MHVR">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHPK" class="form-label">MHPK:</label>
+                        <input type="number" class="form-control" name="MHPK" placeholder="Enter MHPK">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHPB" class="form-label">MHPB:</label>
+                        <input type="number" class="form-control" name="MHPB" placeholder="Enter MHPB">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHYP" class="form-label">MHYP:</label>
+                        <input type="number" class="form-control" name="MHYP" placeholder="Enter MHYP">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHHB" class="form-label">MHHB:</label>
+                        <input type="number" class="form-control" name="MHHB" placeholder="Enter MHHB">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHDB" class="form-label">MHDB:</label>
+                        <input type="number" class="form-control" name="MHDB" placeholder="Enter MHDB">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHMY" class="form-label">MHMY:</label>
+                        <input type="number" class="form-control" name="MHMY" placeholder="Enter MHMY">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHGG" class="form-label">MHGG:</label>
+                        <input type="number" class="form-control" name="MHGG" placeholder="Enter MHGG">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHP1" class="form-label">MHP1:</label>
+                        <input type="number" class="form-control" name="MHP1" placeholder="Enter MHP1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHGH" class="form-label">MHGH:</label>
+                        <input type="number" class="form-control" name="MHGH" placeholder="Enter MHGH">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHSL" class="form-label">MHSL:</label>
+                        <input type="number" class="form-control" name="MHSL" placeholder="Enter MHSL">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MDHK" class="form-label">MDHK:</label>
+                        <input type="number" class="form-control" name="MDHK" placeholder="Enter MDHK">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MSLA" class="form-label">MSLA:</label>
+                        <input type="number" class="form-control" name="MSLA" placeholder="Enter MSLA">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MBBS" class="form-label">MBBS:</label>
+                        <input type="number" class="form-control" name="MBBS" placeholder="Enter MBBS">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MMKA" class="form-label">MMKA:</label>
+                        <input type="number" class="form-control" name="MMKA" placeholder="Enter MMKA">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHKM" class="form-label">MHKM:</label>
+                        <input type="number" class="form-control" name="MHKM" placeholder="Enter MHKM">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MEST" class="form-label">MEST:</label>
+                        <input type="number" class="form-control" name="MEST" placeholder="Enter MEST">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MPPP" class="form-label">MPPP:</label>
+                        <input type="number" class="form-control" name="MPPP" placeholder="Enter MPPP">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHNB" class="form-label">MHNB:</label>
+                        <input type="number" class="form-control" name="MHNB" placeholder="Enter MHNB">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHSB" class="form-label">MHSB:</label>
+                        <input type="number" class="form-control" name="MHSB" placeholder="Enter MHSB">
+                    </div> 
+                    <div class="mb-3">
+                        <label for="MHMR" class="form-label">MHMR:</label>
+                        <input type="text" class="form-control" name="MHMR" placeholder="Enter MHMR">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHRA" class="form-label">MHRA:</label>
+                        <input type="number" class="form-control" name="MHRA" placeholder="Enter MHRA">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHRN" class="form-label">MHRN:</label>
+                        <input type="number" class="form-control" name="MHRN" placeholder="Enter sMHRN">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHSG" class="form-label">MHSG:</label>
+                        <input type="number" class="form-control" name="MHSG" placeholder="Enter MHSG">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHRP" class="form-label">MHRP:</label>
+                        <input type="number" class="form-control" name="MHRP" placeholder="Enter MHRP">
+                    </div>
+                    <div class="mb-3">
+                        <label for="MHEC" class="form-label">MHEC:</label>
+                        <input type="number" class="form-control" name="MHEC" placeholder="Enter MHEC">
+                    </div>
+                    <div class="mb-3">
+                        <label for="CM_TEAM_HEAD" class="form-label">CM Team Head:</label>
+                         <input type="text" class="form-control" name="CM_TEAM_HEAD" placeholder="Enter CM Team Head">
+                    </div>
+          
+             
+            <div class="card-footer mt-3">
+              <button type="submit" class="btn btn-success">Insert Pharma Item</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div> <!-- End of tab content -->
+
+    <div class="text-center mt-3 mb-3">
+      <a href="/" class="btn btn-secondary">Back to Home</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

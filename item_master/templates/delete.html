@@ -1,0 +1,271 @@
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Item</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function confirmDeletion() {
+      let mfgName = document.getElementById("mfg_name").value.trim();
+      if (!mfgName) {
+        alert("❌ MFG name cannot be empty.");
+        return false;
+      }
+      return confirm(`⚠️ Are you sure you want to delete all records for MFG '${mfgName}'?`);
+    }
+  </script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .card-header, .card-footer {
+      background-color: white;
+    }
+    .card-header {
+      border-bottom: 2px solid #ddd;
+      text-align: center;
+      padding: 20px;
+    }
+    .card-header h2 {
+      color: #007bff;
+      margin-bottom: 0;
+    }
+    .card-footer {
+      border-top: 2px solid #ddd;
+      text-align: center;
+      padding: 20px;
+    }
+    .btn-secondary {
+      border-radius: 8px;
+      background-color: #6c757d;
+      color: white;
+      padding: 10px 20px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+    }
+    .btn-secondary:hover {
+      background-color: #495057;
+    }
+    .btn-danger {
+      border-radius: 8px;
+      background-color: #0056b3;
+      color: white;
+      padding: 10px 20px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      border: none;
+    }
+    .btn-danger:hover, .btn-secondary:hover {
+      background-color: #004494;
+    }
+    .alert-note {
+      font-size: 14px;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2>Delete Item</h2>
+          <small>Remove all records by MFG Name</small>
+        </div>
+
+        <div id="message" class="p-3">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+
+        <div class="card-body">
+          <form action="/delete" method="POST" onsubmit="return confirmDeletion()">
+            <div class="mb-3">
+              <label for="mfg_name" class="form-label">Enter MFG Name:</label>
+              <input type="text" id="mfg_name" name="mfg_name" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-danger w-100">Delete All Records</button>
+          </form>
+        </div>
+
+        <div class="card-footer">
+          <a href="{{ url_for('app_routes.index') }}" class="btn btn-secondary">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Item</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function confirmDeletion(tab) {
+      let inputId = tab === 'pharma' ? "pharma_mfg_name" : "mfg_name";
+      let mfgName = document.getElementById(inputId).value.trim();
+      if (!mfgName) {
+        alert("❌ MFG name cannot be empty.");
+        return false;
+      }
+      return confirm(`⚠️ Are you sure you want to delete all records for MFG '${mfgName}'?`);
+    }
+  </script>
+ <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Poppins', sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .small-label {
+      font-size: 14px; /* same as h2 */
+      font-weight: normal;
+      color: black;    /* matches .text-primary */
+      display: block;    /* places it on a new line under the heading */
+      margin-top: 0.25rem;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .card-header {
+      background-color: white;
+      color: #007bff;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 15px;
+      border-bottom: none;
+    }
+    .card-footer {
+      background-color: white;
+      padding: 15px;
+      text-align: center;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .btn-primary {
+      width: 120px;
+      height: 40px;
+    }
+    .tab-wrapper {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+    .tab-content {
+      padding: 0.75rem 1rem;
+    }
+    .tab-pane > .p-4 {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 1rem !important;
+    }
+    .nav-tabs {
+      border-bottom: 1px solid #dee2e6;
+    }
+    .nav-tabs .nav-link {
+      font-size: 16px;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card">
+
+        <div class="card-header">
+          <h2>Delete Item</h2>
+          <ul class="nav nav-tabs mt-2" id="bulkUploadTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="gc-tab" data-bs-toggle="tab" data-bs-target="#gc" type="button" role="tab" aria-controls="gc" aria-selected="true">GC</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pharma-tab" data-bs-toggle="tab" data-bs-target="#pharma" type="button" role="tab" aria-controls="pharma" aria-selected="false">Pharma</button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tab-content px-3 pb-3">
+      
+          <div class="tab-pane fade show active" id="gc" role="tabpanel" aria-labelledby="gc-tab">
+            <div id="message" class="p-3">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+            </div>
+             <form action="/delete" method="POST" onsubmit="return confirmDeletion('gc')"> 
+              <div class="mb-3">
+                <label for="mfg_name" class="form-label">Enter GC MFG Name:</label>
+                <input type="text" id="mfg_name" name="mfg_name" class="form-control" required />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Delete GC Records</button>
+            </form>
+          </div>
+
+       
+          <div class="tab-pane fade" id="pharma" role="tabpanel" aria-labelledby="pharma-tab">
+            <div id="message" class="p-3">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+            </div>
+            <form action="/pharma/delete" method="POST" onsubmit="return confirmDeletion('pharma')">
+              <div class="mb-3">
+                <label for="pharma_mfg_name" class="form-label">Enter Pharma MFG Name:</label>
+                <input type="text" id="pharma_mfg_name" name="mfg_name" class="form-control" required />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Delete Pharma Records</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <a href="{{ url_for('app_routes.index') }}" class="btn btn-secondary">Back to Home</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html> 
+
+
